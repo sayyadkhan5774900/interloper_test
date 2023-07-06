@@ -20,3 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'allProdcuts'])->name('all-products');
+Route::get('/add-products', [App\Http\Controllers\ProductController::class, 'addProducts'])->name('add-products');
+Route::get('/edit-products/{product_id?}', [App\Http\Controllers\ProductController::class, 'editProducts'])->name('edit-products');
+Route::post('/store-products/{product_id?}', [App\Http\Controllers\ProductController::class, 'storeProducts'])->name('store-products');
+Route::delete('/delete-products/{product_id?}', [App\Http\Controllers\ProductController::class, 'deleteProducts'])->name('destroy-products');
