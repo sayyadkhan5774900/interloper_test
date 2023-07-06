@@ -38,7 +38,6 @@ class ProductController extends Controller
             ]);
 
             if ($rules) {
-                dd($rules);
                 $products->name = $request->name;
                 $products->description = $request->description;
                 $products->price = $request->price;
