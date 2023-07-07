@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('add-task', [TaskController::class, 'addTask']);
+Route::post('store-task', [TaskController::class, 'storeTask'])->name('store-task');
+Route::post('task-edit', [TaskController::class, 'TaskEdit'])->name('task-update');
+
+Route::get('all-task', [TaskController::class, 'allTask']);
+
+Route::delete('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('task.delete');
+Route::get('/complete-task/{id}', [TaskController::class, 'completeTask']);
+

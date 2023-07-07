@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="contentContainer">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <!-- {{ __('You are logged in!') }} -->
+                    <div class="mt-2">
+                        <a href="{{url('add-task')}}" class="btn btn-primary">Add Tasks</a>
+                    </div>
                 </div>
             </div>
         </div>
