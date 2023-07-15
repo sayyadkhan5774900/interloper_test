@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                  <a href="{{route('view-posts')}}"> view Post<a>
                 </div>
             </div>
         </div>
