@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/tasks', [TaskController::class, 'displayTasks']);
+Route::post('/tasks', [TaskController::class, 'createTask']);
+Route::get('tasks/create', [TaskController::class, 'viewCreate'])->name('tasks.create');
 
 Auth::routes();
 
