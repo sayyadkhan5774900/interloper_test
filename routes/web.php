@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::get('/tasks', [TaskController::class, 'displayTasks']);
 Route::post('/tasks', [TaskController::class, 'createTask']);
 Route::get('tasks/create', [TaskController::class, 'viewCreate'])->name('tasks.create');
+Route::post('/tasks/{id}/mark-as-completed', [TaskController::class, 'markAsCompleted'])->name('tasks.markAsCompleted');
 
 Auth::routes();
 

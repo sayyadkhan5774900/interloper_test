@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -26,5 +27,14 @@ class TaskController extends Controller
     public function viewCreate()
     {
         return view('tasks.create');
+    }
+
+    public function markAsCompleted(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed_at = carbon::now();
+        $task->save();
+
+        return response()->json(['success' => true,  'message' => 'Task marked completed']);
     }
 }
