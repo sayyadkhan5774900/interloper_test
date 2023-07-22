@@ -1,3 +1,4 @@
+// create a task
 document.addEventListener('DOMContentLoaded', function () {
     const createTaskForm = document.getElementById('createTaskForm');
 
@@ -28,8 +29,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// mark the tasks completed
 document.addEventListener('DOMContentLoaded', function () {
     const completeButtons = document.querySelectorAll('.complete-btn');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
 
     completeButtons.forEach(button => {
         button.addEventListener('click', function (event) {
@@ -50,6 +53,33 @@ document.addEventListener('DOMContentLoaded', function () {
                         this.remove();
                     } else {
                         alert('Failed to mark task as completed.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                });
+        });
+    });
+
+    // delete a task
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            const taskRow = this.closest('tr');
+            const taskId = taskRow.getAttribute('task-id');
+
+            fetch(`/tasks/${taskId}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            })
+                .then(response => {
+                    if (response.status === 200) {
+                        taskRow.remove(); // remove the button after marked done
+                    } else {
+                        alert('Failed to delete task.');
                     }
                 })
                 .catch(error => {

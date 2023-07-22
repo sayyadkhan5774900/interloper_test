@@ -29,12 +29,20 @@ class TaskController extends Controller
         return view('tasks.create');
     }
 
-    public function markAsCompleted(Request $request, $id)
+    public function markAsCompleted($id)
     {
         $task = Task::findOrFail($id);
         $task->completed_at = carbon::now();
         $task->save();
 
         return response()->json(['success' => true,  'message' => 'Task marked completed']);
+    }
+
+    public function removeTask($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->delete();
+
+        return response()->json(['success' => true, 'message' => 'Task Deleted']);
     }
 }

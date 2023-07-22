@@ -13,6 +13,7 @@
             <label for="description" class="form-label">Task Description:</label>
             <textarea name="description" class="form-control" required></textarea>
         </div>
+        <a href="{{ url('/tasks') }}" class="btn btn-secondary">Back</a>
         <button type="submit" class="btn btn-primary">Create Task</button>
     </form>
 </div>

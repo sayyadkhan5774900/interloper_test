@@ -13,11 +13,12 @@
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tasks as $task)
-                <tr>
+                <tr task-id="{{ $task->id }}" @if ($task->completed_at) class="table-success" @endif>
                     <th scope="row" {{$loop->iteration}} </th>
                     <td>{{$task->title}} </td>
                     <td>{{$task->description}} </td>
@@ -32,6 +33,7 @@
                         @unless ($task->completed_at)
                         <button class="btn btn-success complete-btn" task-id="{{ $task->id }}">Mark as Completed</button>
                         @endunless
+                        <button class="btn btn-danger delete-btn">Delete</button>
                     </td>
                 </tr>
                 @endforeach
