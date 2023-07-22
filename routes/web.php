@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/tasks', 'TaskController@tasks');
+Route::get('/get_tasks', 'TaskController@getTasks');
+Route::post('store_tasks', 'TaskController@storeTasks');
+Route::get('edit_tasks', 'TaskController@editTasks');
+Route::post('update_tasks', 'TaskController@updateTasks');
